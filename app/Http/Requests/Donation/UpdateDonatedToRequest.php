@@ -5,7 +5,7 @@ namespace App\Http\Requests\Donation;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateDonationGoodRequest extends FormRequest
+class UpdateDonatedToRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,9 +23,7 @@ class CreateDonationGoodRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'goods_name' => ['required', 'string'],
-            'amount' => ['required', 'string', 'min:1'],
-            'donated_to' => ['string'],
+            'donated_to' => ['required', 'string'],
         ];
     }
 }

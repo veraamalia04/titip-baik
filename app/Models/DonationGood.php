@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Donation;
 use Illuminate\Database\Eloquent\Attributes\Guarded;
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,4 +10,8 @@ use Illuminate\Database\Eloquent\Model;
 class DonationGood extends Model
 {
     protected $table = 'donation_goods';
+
+    public function donation(){
+        return $this->belongsTo(Donation::class, 'donation_id');
+    }
 }

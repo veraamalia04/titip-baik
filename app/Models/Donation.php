@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\DonationGood;
 use Illuminate\Database\Eloquent\Attributes\Guarded;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -23,5 +24,9 @@ class Donation extends Model
         } while (self::where('no_ref', $ref)->exists());
 
         return $ref;
+    }
+
+    public function goods(){
+        return $this->hasMany(DonationGood::class, 'donation_id');
     }
 }

@@ -42,7 +42,7 @@ return new class extends Migration
             $table->timestamp('dikirim_pada')->nullable();
             $table->timestamp('disalurkan_pada')->nullable();
            
-            
+            $table->foreignId('donation_id')->constrained('donations');
             $table->timestamps();
         });
     }
