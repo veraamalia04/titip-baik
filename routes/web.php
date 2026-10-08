@@ -1,16 +1,19 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('/login')->group(function(){
-    Route::get('/')->name('page.login');
-    Route::post('/')->name('post.login');
+Route::prefix('/login')->middleware('guest')->group(function(){
+    Route::get('/', [PageController::class, 'loginPage'])->name('page.login');
+    Route::post('/', [AuthController::class, 'login'])->name('post.login');
 });
 
-Route::prefix('/dashboard')->group(function(){
-    Route::post('/logout')->name('post.dashboard.logout');
+Route::prefix('/dashboard')->middleware('auth')->group(function(){
+    Route::get('/', [PageController::class, 'index'])->name('page.dashboard.index');
+    Route::post('/logout',[AuthController::class, 'logout'])->name('post.dashboard.logout');
 });
