@@ -20,7 +20,7 @@ return new class extends Migration
         });
         Schema::create('donations', function (Blueprint $table) {
             $table->id();
-            $table->string('no_ref')->unique();
+            $table->string('no_ref')->unique()->nullable();
             $table->string('donature_name');
             $table->string('donature_phone');
             $table->string('donature_email')->nullable();
